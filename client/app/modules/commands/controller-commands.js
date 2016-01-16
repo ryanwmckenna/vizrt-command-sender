@@ -5,9 +5,15 @@ angular.module('commandsender.commands')
         function($scope) {
 
             var vm = {
-                
+
+              property: 'RENDERER',
+
+              stack: [],
+              newCommand: []
+
             };
 
             $scope.vm = vm;
+
         }
     ]);

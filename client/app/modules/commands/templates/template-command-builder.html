@@ -1,0 +1,64 @@
+<div class="well">
+
+  <h4>Build Command</h4>
+
+  <div class="row">
+
+    <div class ="col-xs-10">
+
+      <form class="form-inline">
+
+          <div class="btn-group">
+            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              RENDERER
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="property in properties"><a href="#" ng-click="propertySelected(property)">{{property}}</a></li>
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              *MAIN
+            </button>
+            <ul class="dropdown-menu">
+              ...
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              *SCRIPT
+            </button>
+            <ul class="dropdown-menu">
+              ...
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-warning btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              INVOKE
+            </button>
+            <ul class="dropdown-menu">
+              ...
+            </ul>
+          </div>
+
+          <input class="form-control">
+          <input class="form-control">
+
+      </form>
+
+  </div>
+
+      <div class="col-xs-2">
+
+        <button class="btn btn-success" type="button">
+        Add to Stack
+        </button>
+
+      </div>
+
+  </div>
+
+</div>
