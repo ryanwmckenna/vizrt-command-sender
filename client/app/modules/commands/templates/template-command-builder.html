@@ -6,47 +6,21 @@
 
     <div class ="col-xs-10">
 
-      <form class="form-inline">
+      <form class="form-inline" role="form">
 
-          <div class="btn-group">
-            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              RENDERER
-            </button>
-            <ul class="dropdown-menu">
-              <li ng-repeat="property in properties"><a href="#" ng-click="propertySelected(property)">{{property}}</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              *MAIN
-            </button>
-            <ul class="dropdown-menu">
-              ...
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              *SCRIPT
-            </button>
-            <ul class="dropdown-menu">
-              ...
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-warning btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              INVOKE
-            </button>
-            <ul class="dropdown-menu">
-              ...
-            </ul>
-          </div>
-
-          <input class="form-control">
-          <input class="form-control">
-
+        <div class="col-sm-12">
+          <input type="text" id="firstSlot" name="firstSlot" class="form-control inputblue" ng-model="selected" uib-typeahead="property for property in firstSlot | filter:$viewValue"/>
+          *
+          <input type="text" id="secondSlot" name="secondSlot" class="form-control inputblue" ng-model="selected2" uib-typeahead="property for property in secondSlot | filter:$viewValue"/>
+          *
+          <input type="text" id="thirdSlot" name="thirdSlot" class="form-control inputblue" ng-model="selected3" uib-typeahead="property for property in thirdSlot | filter:$viewValue"/>
+          &nbsp;
+          <input type="text" id="fourthSlot" name="fourthSlot" class="form-control inputyellow" ng-model="selected4" uib-typeahead="property for property in fourthSlot | filter:$viewValue"/>
+          &nbsp;
+          <input type="text" name="fifthSlot" class="form-control"/>
+          &nbsp;
+          <input type="text" name="fifthSlot" class="form-control"/>
+        </div>
       </form>
 
   </div>

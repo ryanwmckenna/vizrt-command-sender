@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('commandsender', [
+	'ui.bootstrap',
 	'ui.router',
 	'commandsender.commands'
 ]);
