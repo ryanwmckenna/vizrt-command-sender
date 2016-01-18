@@ -1,0 +1,23 @@
+{
+  "name": "BBC_VizRT_Command_Sender_Build",
+  "version": "0.1.0",
+  "description": "Build service for VCS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "~0.5.x"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}

@@ -3,6 +3,8 @@
 angular.module('commandsender', [
 	'ui.bootstrap',
 	'ui.router',
+	'btford.socket-io',
+	'commandsender.common',
 	'commandsender.commands'
 ]);
 

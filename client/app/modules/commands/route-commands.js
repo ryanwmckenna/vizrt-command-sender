@@ -4,7 +4,7 @@ angular.module('commandsender.commands').config(['$stateProvider', function($sta
 
 	$stateProvider
 		.state('commands', {
-			url: '/commands',
+			url: '/',
 			templateUrl: 'views/commands/commands.html',
 			controller: 'Commands'
 		});

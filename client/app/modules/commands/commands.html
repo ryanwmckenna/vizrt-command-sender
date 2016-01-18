@@ -1,69 +1,54 @@
 <div class="col-xs-12">
-
   <h1>Vizrt Command Sender</h1>
-
   <div class="well">
-
-    <h4>Build Command</h4>
-
+    <h4>VIZRT Renderer</h4>
     <div class="row">
-
-      <div class ="col-xs-10">
-
-        <vizrt-command-builder command="vm.newCommand">
-        </vizrt-command-builder>
-
+      <div class="col-xs-12">
+        <input type="text" class="form-control" ng-model="vm.ip"/>
       </div>
-
-      <div class="col-xs-2">
-
-        <button class="btn btn-success" type="button" ng-click="vm.addToStack()">
-        Add to Stack
-        </button>
-
-      </div>
-
+    </div>
   </div>
-
-  </div>
-
   <div class="well">
-
-    <h4>Stack</h4>
-
-    <div class="panel">
-
-      <div class="row" ng-repeat="command in vm.stack track by $index">
-
-      <div class ="col-md-2">
-          <button class="btn btn-success btn-sm" type="button">
-          Send
-          </button>
+    <h4>Build Command</h4>
+    <div class="row">
+      <div class="col-xs-10">
+        <form class="form-inline" role="form">
+          <div class="col-sm-12">
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand[0]" uib-typeahead="property for property in vm.slots[0] | filter:$viewValue" /> *
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand[1]" uib-typeahead="property for property in vm.slots[1] | filter:$viewValue" /> *
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand[2]" uib-typeahead="property for property in vm.slots[2] | filter:$viewValue" /> &nbsp;
+            <input type="text" class="form-control inputyellow" ng-model="vm.newCommand[3]" uib-typeahead="property for property in vm.slots[3] | filter:$viewValue" /> &nbsp;
+            <input type="text" class="form-control" ng-model="vm.newCommand[4]" /> &nbsp;
+            <input type="text" class="form-control" ng-model="vm.newCommand[5]" />
+          </div>
+        </form>
       </div>
-
-      <div class ="col-md-10">
-
+      <div class="col-xs-2">
+        <button class="btn btn-success" type="button" ng-click="vm.addToStack()">Add to Stack</button>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h4>Stack</h4>
+    <div class="panel">
+      <div class="row" ng-repeat="command in vm.stack track by $index">
+        <div class="col-md-2">
+          <button class="btn btn-success btn-sm" type="button" ng-click="sendCommand(command)">Send</button>
+          <button class="btn btn-info btn-sm" type="button" ng-click="editCommand(command)">Edit</button>
+          <button class="btn btn-danger btn-sm" type="button" ng-click="deleteCommand($index)">Delete</button>
+        </div>
+        <div class="col-md-10">
           <form class="form-inline">
-
             <span class="label label-primary">{{command[0]}}</span>
             <span class="label label-primary">{{command[1]}}</span>
             <span class="label label-primary">{{command[2]}}</span>
             <span class="label label-warning">{{command[3]}}</span>
             <span class="label label-default">{{command[4]}}</span>
             <span class="label label-default">{{command[5]}}</span>
-
           </form>
-
+        </div>
       </div>
-
-      </div>
-
     </div>
-
-    <button class="btn btn-danger" type="button">
-    Clear Stack
-    </button>
-
+    <button class="btn btn-danger" type="button" ng-click="vm.clearStack()">Clear Stack</button>
   </div>
-
 </div>
