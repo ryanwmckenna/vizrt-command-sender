@@ -1,3 +1,19 @@
+<script type="text/ng-template" id="template-custom-typeahead-results-properties.html">
+    <a>
+        <span class="label label-primary">P</span>
+        <span ng-bind-html="match.model.value | uibTypeaheadHighlight:query"></span>
+        <span class="label label-primary" ng-bind-html="match.model.description | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>
+
+<script type="text/ng-template" id="template-custom-typeahead-results-commands.html">
+    <a>
+        <span class="label label-warning">C</span>
+        <span ng-bind-html="match.model.value | uibTypeaheadHighlight:query"></span>
+        <span class="label label-warning" ng-bind-html="match.model.description | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>
+
 <div class="col-xs-12">
   <h1>Vizrt Command Sender</h1>
   <div class="well">
@@ -14,11 +30,12 @@
       <div class="col-xs-10">
         <form class="form-inline" role="form">
           <div class="col-sm-12">
-            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[0]" uib-typeahead="property for property in vm.slots[0] | filter:$viewValue" /> *
-            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[1]" uib-typeahead="property for property in vm.slots[1] | filter:$viewValue" /> *
-            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[2]" uib-typeahead="property for property in vm.slots[2] | filter:$viewValue" /> &nbsp;
-            <input type="text" class="form-control inputyellow" ng-model="vm.newCommand.command" uib-typeahead="property for property in vm.slots[3] | filter:$viewValue" /> &nbsp;
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[0]" uib-typeahead="property.value as property.value for property in vm.slots[0] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> *
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[1]" uib-typeahead="property.value as property.value for property in vm.slots[1] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> *
+            <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[2]" uib-typeahead="property.value as property.value for property in vm.slots[2] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> &nbsp;
+            <input type="text" class="form-control inputyellow" ng-model="vm.newCommand.command" uib-typeahead="property.value as property.value for property in vm.slots[3] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-commands.html" /> &nbsp;
             <input type="text" class="form-control" ng-model="vm.newCommand.attributes" />
+
           </div>
         </form>
       </div>
