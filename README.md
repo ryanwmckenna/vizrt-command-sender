@@ -7,7 +7,7 @@ Sending Commands To Vizrt's Viz Engine with Open Source Tools
 You will need nodeJS and bower installed
 
 Clone the repo
-cd <<project folder>>
+cd [project folder]
 
 ## To run in dev:
 
@@ -20,7 +20,7 @@ grunt server
 
 In another:
 
-cd <<server folder>>
+cd [server folder]
 npm install
 grunt
 
@@ -30,12 +30,12 @@ Open browser and navigate to http://localhost:9000 for dev version
 
 In one terminal window:
 
-cd <<client folder>>
+cd [client folder]
 grunt build
 
 In another:
 
-cd <<build folder>>
+cd [build folder]
 npm install
 grunt
 node .server/app
