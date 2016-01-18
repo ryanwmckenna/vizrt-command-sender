@@ -33,9 +33,9 @@
     <div class="panel">
       <div class="row" ng-repeat="command in vm.stack track by $index">
         <div class="col-md-2">
-          <button class="btn btn-success btn-sm" type="button" ng-click="sendCommand(command)">Send</button>
-          <button class="btn btn-info btn-sm" type="button" ng-click="editCommand(command)">Edit</button>
-          <button class="btn btn-danger btn-sm" type="button" ng-click="deleteCommand($index)">Delete</button>
+          <button class="btn btn-success btn-sm" type="button" ng-click="vm.sendCommand(command)">Send</button>
+          <button class="btn btn-info btn-sm" type="button" ng-click="vm.editCommand(command)">Edit</button>
+          <button class="btn btn-danger btn-sm" type="button" ng-click="vm.deleteCommand($index)">Delete</button>
         </div>
         <div class="col-md-10">
           <form class="form-inline">

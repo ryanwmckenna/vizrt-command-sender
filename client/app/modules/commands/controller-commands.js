@@ -17,22 +17,23 @@ angular.module('commandsender.commands')
       };
 
       vm.editCommand = function(command) {
-
+        console.log(command);
+        vm.newCommand = command;
       };
 
       vm.deleteCommand = function(index) {
-
+        console.log(index);
       };
 
       vm.clearStack = function() {
-
+        vm.stack = [];
       };
 
       vm.sendCommand = function(command) {
         if (vm.ip !== '') {
           rendererService.render({
             ip: vm.ip,
-            command: command.join(' ')
+            command: command[0] + '*' + command[1] + '*' + command[2] + ' ' + command[3] + ' ' + command[4] + ' ' + command[5]
           }).then(function(response) {
             vm.response = response;
           });
