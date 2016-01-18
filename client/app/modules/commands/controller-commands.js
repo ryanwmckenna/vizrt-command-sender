@@ -5,10 +5,16 @@ angular.module('commandsender.commands')
         function($scope) {
 
             var vm = {
-              
-              stack: [],
-              newCommand: []
 
+              stack: [],
+              newCommand: ['','','','','','']
+
+            };
+
+            vm.addToStack = function() {
+            /* commandService.addCommand(vm.newCommand); */
+            vm.stack.push(vm.newCommand);
+            vm.newCommand = ['','','','','',''];
             };
 
             $scope.vm = vm;

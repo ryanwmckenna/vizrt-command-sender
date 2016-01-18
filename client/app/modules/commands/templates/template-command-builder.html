@@ -1,38 +1,19 @@
-<div class="well">
 
-  <h4>Build Command</h4>
-
-  <div class="row">
-
-    <div class ="col-xs-10">
 
       <form class="form-inline" role="form">
 
         <div class="col-sm-12">
-          <input type="text" id="firstSlot" name="firstSlot" class="form-control inputblue" ng-model="selected" uib-typeahead="property for property in firstSlot | filter:$viewValue"/>
+          <input type="text" id="firstSlot" name="firstSlot" class="form-control inputblue" ng-model="command[0]" uib-typeahead="property for property in firstSlot | filter:$viewValue"/>
           *
-          <input type="text" id="secondSlot" name="secondSlot" class="form-control inputblue" ng-model="selected2" uib-typeahead="property for property in secondSlot | filter:$viewValue"/>
+          <input type="text" id="secondSlot" name="secondSlot" class="form-control inputblue" ng-model="command[1]" uib-typeahead="property for property in secondSlot | filter:$viewValue"/>
           *
-          <input type="text" id="thirdSlot" name="thirdSlot" class="form-control inputblue" ng-model="selected3" uib-typeahead="property for property in thirdSlot | filter:$viewValue"/>
+          <input type="text" id="thirdSlot" name="thirdSlot" class="form-control inputblue" ng-model="command[2]" uib-typeahead="property for property in thirdSlot | filter:$viewValue"/>
           &nbsp;
-          <input type="text" id="fourthSlot" name="fourthSlot" class="form-control inputyellow" ng-model="selected4" uib-typeahead="property for property in fourthSlot | filter:$viewValue"/>
+          <input type="text" id="fourthSlot" name="fourthSlot" class="form-control inputyellow" ng-model="command[3]" uib-typeahead="property for property in fourthSlot | filter:$viewValue"/>
           &nbsp;
-          <input type="text" name="fifthSlot" class="form-control"/>
+          <input type="text" name="fifthSlot" class="form-control" ng-model="command[4]"/>
           &nbsp;
-          <input type="text" name="fifthSlot" class="form-control"/>
+          <input type="text" name="sixthSlot" class="form-control" ng-model="command[5]"/>
         </div>
+
       </form>
-
-  </div>
-
-      <div class="col-xs-2">
-
-        <button class="btn btn-success" type="button">
-        Add to Stack
-        </button>
-
-      </div>
-
-  </div>
-
-</div>

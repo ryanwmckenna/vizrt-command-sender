@@ -2,8 +2,30 @@
 
   <h1>Vizrt Command Sender</h1>
 
-  <vizrt-command-builder commands="vm.property">
-  </vizrt-command-builder>
+  <div class="well">
+
+    <h4>Build Command</h4>
+
+    <div class="row">
+
+      <div class ="col-xs-10">
+
+        <vizrt-command-builder command="vm.newCommand">
+        </vizrt-command-builder>
+
+      </div>
+
+      <div class="col-xs-2">
+
+        <button class="btn btn-success" type="button" ng-click="vm.addToStack()">
+        Add to Stack
+        </button>
+
+      </div>
+
+  </div>
+
+  </div>
 
   <div class="well">
 
@@ -11,7 +33,7 @@
 
     <div class="panel">
 
-      <div class="row">
+      <div class="row" ng-repeat="command in vm.stack track by $index">
 
       <div class ="col-md-2">
           <button class="btn btn-success btn-sm" type="button">
@@ -23,45 +45,18 @@
 
           <form class="form-inline">
 
-            <span class="label label-primary">RENDERER</span>
-            <span class="label label-primary">*MAIN</span>
-            <span class="label label-primary">*SCRIPT</span>
-            <span class="label label-warning">INVOKE</span>
-            <span class="label label-default">AnimateLogo</span>
+            <span class="label label-primary">{{command[0]}}</span>
+            <span class="label label-primary">{{command[1]}}</span>
+            <span class="label label-primary">{{command[2]}}</span>
+            <span class="label label-warning">{{command[3]}}</span>
+            <span class="label label-default">{{command[4]}}</span>
+            <span class="label label-default">{{command[5]}}</span>
 
           </form>
 
       </div>
 
       </div>
-
-    </div>
-
-    <div class="panel">
-
-    <div class="row">
-
-      <div class ="col-md-2">
-          <button class="btn btn-success btn-sm" type="button">
-          Send
-          </button>
-      </div>
-
-      <div class ="col-md-10">
-
-          <form class="form-inline">
-
-            <span class="label label-primary">RENDERER</span>
-            <span class="label label-primary">*MAIN</span>
-            <span class="label label-primary">*SCRIPT</span>
-            <span class="label label-warning">INVOKE</span>
-            <span class="label label-default">AnimateStrap</span>
-            <span class="label label-default">RYAN McKENNA</span>
-        </form>
-
-      </div>
-
-    </div>
 
     </div>
 

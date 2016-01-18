@@ -6,7 +6,7 @@ angular.module('commandsender.commands')
         restrict: 'E',
         replace: true,
         scope: {
-          commands: '='
+          command: '='
         },
         templateUrl: 'views/commands/templates/template-command-builder.html',
         link: function(scope) {
