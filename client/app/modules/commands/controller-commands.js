@@ -1,39 +1,100 @@
 'use strict';
 
 angular.module('commandsender.commands')
-  .controller('Commands', ['$scope', 'rendererService',
-    function($scope, rendererService) {
+  .controller('Commands', ['$scope', 'rendererService', 'uuidService',
+    function($scope, rendererService, uuidService) {
 
       var vm = {
         stack: [],
-        newCommand: ['', '', '', '', '', ''],
+        newCommand: {
+          commandId: uuidService.newUuid(),
+          properties: ['', '', ''],
+          command: '',
+          attributes: ''
+        },
         ip: '127.0.0.1',
-        response: ''
+        response: '',
+        editingCommand: false
+      };
+
+      vm.resetCommand = function(){
+        vm.newCommand = {
+          commandId: uuidService.newUuid(),
+          properties: ['', '', ''],
+          command: '',
+          attributes: ''
+        };
       };
 
       vm.addToStack = function() {
         vm.stack.push(vm.newCommand);
-        vm.newCommand = ['', '', '', '', '', ''];
+        vm.resetCommand();
       };
 
       vm.editCommand = function(command) {
-        console.log(command);
-        vm.newCommand = command;
+        vm.newCommand = angular.copy(command);
+        vm.editingCommand = true;
+      };
+
+      vm.cancelEdit = function() {
+        vm.editingCommand = false;
+        vm.resetCommand();
+      };
+
+      vm.confirmEdit = function() {
+        var temp = [];
+
+        for (var i = 0; i < vm.stack.length; i+= 1){
+          if(vm.newCommand.commandId === vm.stack[i].commandId){
+            temp.push(vm.newCommand);
+          } else {
+            temp.push(vm.stack[i]);
+          }
+        }
+
+        vm.stack = temp;
+
+        vm.editingCommand = false;
+        vm.resetCommand();
       };
 
       vm.deleteCommand = function(index) {
-        console.log(index);
+        var temp = [];
+
+        for (var i = 0; i < vm.stack.length; i+= 1){
+          if(i !== index){
+            temp.push(vm.stack[i]);
+          }
+        }
+        vm.stack = temp;
       };
 
       vm.clearStack = function() {
         vm.stack = [];
       };
 
+      vm.createSendCommand = function(command){
+
+          var nonBlankProps = [];
+
+          for (var i = 0; i < command.properties.length; i += 1){
+            if (command.properties[i] !== ''){
+              nonBlankProps.push(command.properties[i]);
+            }
+          }
+
+          var send = '1 ' + nonBlankProps.join('*') + ' ' + command.command + ' ' + command.attributes;
+
+          console.log(send);
+
+          return send;
+      };
+
       vm.sendCommand = function(command) {
         if (vm.ip !== '') {
           rendererService.render({
             ip: vm.ip,
-            command: command[0] + '*' + command[1] + '*' + command[2] + ' ' + command[3] + ' ' + command[4] + ' ' + command[5]
+            command: vm.createSendCommand(command)
           }).then(function(response) {
             vm.response = response;
           });
