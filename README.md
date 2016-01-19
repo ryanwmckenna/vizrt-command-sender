@@ -1,6 +1,12 @@
 # vizrt-command-sender
 Sending Commands To Vizrt's Viz Engine with Open Source Tools
 
+Future plans:
+
+Dropdowns populated by sending COMMAND_INFO to Viz Engine for each property and command on the fly
+Drag and drop stack items to re-order
+
+
 
 # Instructions
 
@@ -13,7 +19,7 @@ cd [project folder]
 
 In one terminal window:
 
-cd <<client folder>>
+cd [client folder]
 npm install
 bower install
 grunt server
