@@ -58,6 +58,10 @@ angular.module('commandsender.commands')
         vm.editingCommand = true;
       };
 
+      vm.copyCommand = function(command){
+        vm.newCommand = R.clone(command);
+      };
+
       vm.cancelEdit = function() {
         vm.editingCommand = false;
         vm.resetCommand();
@@ -85,10 +89,12 @@ angular.module('commandsender.commands')
 
       vm.saveToLocal = function() {
         $localStorage.commands = JSON.stringify(vm.stack);
+        $localStorage.ip = vm.ip;
       };
 
       vm.loadFromLocal = function() {
-        vm.stack = JSON.parse($localStorage.commands);
+        vm.stack = $localStorage.commands ? JSON.parse($localStorage.commands) : [];
+        vm.ip = $localStorage.ip ? $localStorage.ip : '';
       };
 
       vm.saveArchive = function() {
@@ -151,7 +157,10 @@ angular.module('commandsender.commands')
       };
 
       $scope.$watch('vm.stack', function() {
-        console.log('saving stack');
+        vm.saveToLocal();
+      });
+
+      $scope.$watch('vm.ip', function() {
         vm.saveToLocal();
       });
 

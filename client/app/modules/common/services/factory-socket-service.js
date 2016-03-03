@@ -3,7 +3,7 @@
 angular.module('commandsender.common')
 	.factory('socketService', ['socketFactory', '$q', function(socketFactory, $q) {
 
-		var socket = io('localhost:7000', {transports: ['websocket', 'polling-xhr', 'polling']});
+		var socket = io('localhost:11000', {transports: ['websocket', 'polling-xhr', 'polling']});
 
 		var socketService = socketFactory({ioSocket: socket});
 

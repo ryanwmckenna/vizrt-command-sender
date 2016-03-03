@@ -51,6 +51,7 @@
       </div>
       <div ng-hide="vm.editingCommand" class="col-xs-2">
         <button class="btn btn-success" type="button" ng-click="vm.addToStack()">Add to Stack &nbsp;&nbsp;<i class='fa fa-level-down'></i></button>
+        <button class="btn btn-success" type="button" ng-click="vm.resetCommand()">Clear &nbsp;&nbsp;<i class='fa fa-trash'></i></button>
       </div>
       <div ng-show="vm.editingCommand" class="col-xs-2">
         <button type="button" class="btn btn-success btn-sm" ng-click="vm.confirmEdit()"><i class='fa fa-thumbs-o-up'></i>&nbsp;&nbsp;Save</button>
@@ -74,6 +75,7 @@
         <div class="col-xs-3 align-right">
           <button class="btn btn-success btn-sm margin-3" type="button" ng-click="vm.sendCommand(command)"><i class='fa fa-send'></i>&nbsp;&nbsp;Send</button>
           <button class="btn btn-info btn-sm margin-3" type="button" ng-click="vm.editCommand(command)"><i class='fa fa-cog'></i>&nbsp;&nbsp;Edit</button>
+          <button class="btn btn-warning btn-sm margin-3" type="button" ng-click="vm.copyCommand(command)"><i class='fa fa-clone'></i>&nbsp;&nbsp;Copy</button>
           <button class="btn btn-danger btn-sm margin-3" type="button" ng-click="vm.deleteCommand(command)" ><i class='fa fa-trash'></i>&nbsp;&nbsp;Delete</button>
         </div>
       </div>
