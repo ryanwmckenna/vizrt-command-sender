@@ -3,7 +3,7 @@ var express = require('express'),
     errorHandler,
     http = require('http'),
     server = http.createServer(app),
-    port = Number(process.env.PORT || 7000);
+    port = Number(process.env.PORT || 11000);
 
 //Catch any exceptions we might have missed
 process.on('uncaughtException', function(err) {
