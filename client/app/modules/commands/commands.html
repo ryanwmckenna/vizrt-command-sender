@@ -17,11 +17,20 @@
 
 <div class="col-xs-12">
   <h1>Vizrt Command Sender</h1>
-  <div class="well">
-    <h4>Viz Engine</h4>
-    <div class="row">
+  <div class="well row">
       <div class="col-xs-3">
+        <h4>Viz Engine</h4>
         <input type="text" class="form-control" ng-model="vm.ip"/>
+    </div>
+    <div class="col-xs-9">
+      <h4>Archive</h4>
+      <div>
+        <form class="form-inline">
+        <button type="button" class="btn btn-success btn-sm" ng-click="vm.loadArchive()"><i class='fa fa-folder-open-o'></i>&nbsp;&nbsp;Load</button>
+        <input type="file" id="load-archive" name="files[]" style="display:none;" />
+        <button type="button" class="btn btn-success btn-sm" ng-click="vm.saveArchive()"><i class='fa fa-floppy-o'></i>&nbsp;&nbsp;Save</button>
+        <input type="text" class="form-control" ng-model="vm.archiveName" placeholder="Archive name"/>
+      </form>
       </div>
     </div>
   </div>
@@ -30,14 +39,13 @@
     <div class="row">
       <div class="col-xs-10">
         <form class="form-inline" role="form">
-          <div class="col-sm-12">
+          <div class="col-xs-12">
+            <viz-edit-command ng-repeat="items in vm.newCommand"></viz-edit-command>
             <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[0]" uib-typeahead="property.value as property.value for property in vm.slots[0] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> *
             <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[1]" uib-typeahead="property.value as property.value for property in vm.slots[1] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> *
             <input type="text" class="form-control inputblue" ng-model="vm.newCommand.properties[2]" uib-typeahead="property.value as property.value for property in vm.slots[2] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-properties.html" /> &nbsp;
             <input type="text" class="form-control inputyellow" ng-model="vm.newCommand.command" uib-typeahead="property.value as property.value for property in vm.slots[3] | filter:{value:$viewValue}" typeahead-template-url="template-custom-typeahead-results-commands.html" /> &nbsp;
             <input type="text" class="form-control input-lg" ng-model="vm.newCommand.attributes" />
-
-
           </div>
         </form>
       </div>
@@ -45,22 +53,16 @@
         <button class="btn btn-success" type="button" ng-click="vm.addToStack()">Add to Stack &nbsp;&nbsp;<i class='fa fa-level-down'></i></button>
       </div>
       <div ng-show="vm.editingCommand" class="col-xs-2">
-        <button type="button" class="btn btn-sm" ng-click="vm.confirmEdit()"><i class='fa fa-thumbs-o-up'></i>&nbsp;&nbsp;Save</button>
-        <button type="button" class="btn btn-sm" ng-click="vm.cancelEdit()"><i class='fa fa-thumbs-o-down'></i>&nbsp;&nbsp;Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" ng-click="vm.confirmEdit()"><i class='fa fa-thumbs-o-up'></i>&nbsp;&nbsp;Save</button>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="vm.cancelEdit()"><i class='fa fa-thumbs-o-down'></i>&nbsp;&nbsp;Cancel</button>
       </div>
     </div>
   </div>
   <div class="well">
     <h4>Stack</h4>
-    <div class="panel">
-      <div class="row" ng-repeat="command in vm.stack track by $index">
-        <div class="col-md-2">
-          <button class="btn btn-success btn-sm" type="button" ng-click="vm.sendCommand(command)"><i class='fa fa-send'></i>&nbsp;&nbsp;Send</button>
-          <button class="btn btn-info btn-sm" type="button" ng-click="vm.editCommand(command)"><i class='fa fa-cog'></i>&nbsp;&nbsp;Edit</button>
-          <button class="btn btn-danger btn-sm" type="button" ng-click="vm.deleteCommand($index)" ><i class='fa fa-trash'></i>&nbsp;&nbsp;Delete</button>
-
-        </div>
-        <div class="col-md-10">
+    <div id="sortable-container" class="stack-container" ng-sortable="vm.sortableConfig">
+      <div data-force="30" class="row stack-item" ng-repeat="command in vm.stack track by $index">
+        <div class="col-xs-9">
           <form class="form-inline">
             <span class="label label-primary">{{command.properties[0]}}</span>
             <span class="label label-primary">{{command.properties[1]}}</span>
@@ -69,8 +71,13 @@
             <span class="label label-default">{{command.attributes}}</span>
           </form>
         </div>
+        <div class="col-xs-3 align-right">
+          <button class="btn btn-success btn-sm margin-3" type="button" ng-click="vm.sendCommand(command)"><i class='fa fa-send'></i>&nbsp;&nbsp;Send</button>
+          <button class="btn btn-info btn-sm margin-3" type="button" ng-click="vm.editCommand(command)"><i class='fa fa-cog'></i>&nbsp;&nbsp;Edit</button>
+          <button class="btn btn-danger btn-sm margin-3" type="button" ng-click="vm.deleteCommand(command)" ><i class='fa fa-trash'></i>&nbsp;&nbsp;Delete</button>
+        </div>
       </div>
     </div>
-    <button class="btn btn-danger" type="button" ng-click="vm.clearStack()"><i class='fa fa-trash-o'></i>&nbsp;&nbsp;Clear Stack</button>
+    <button class="btn btn-danger centre" type="button" ng-click="vm.clearStack()"><i class='fa fa-trash-o'></i>&nbsp;&nbsp;Clear Stack</button>
   </div>
 </div>

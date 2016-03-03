@@ -16,7 +16,11 @@
     "es5-shim": "^4.0.0",
     "jquery": "~2.1.4",
     "json3": "^3.3.0",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "angular-ng-sortablejs": "~1.4.2",
+    "ramda": "~0.19.1",
+    "ngstorage": "^0.3.0",
+    "angular-file-saver": "~1.1.0"
   },
   "devDependencies": {},
   "appPath": "app"

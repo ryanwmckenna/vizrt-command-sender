@@ -202,6 +202,12 @@ module.exports = function(grunt) {
         overrides: {
           'socket.io-client': {
             main: 'socket.io.js'
+          },
+          'angular-ng-sortablejs': {
+            main: [
+              'Sortable.js',
+              'ng-sortable.js'
+            ]
           }
         }
       },
