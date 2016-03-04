@@ -143,7 +143,7 @@ angular.module('commandsender.commands')
       };
 
       vm.createSendCommand = function(command) {
-        var send = '1 ' + R.compose(R.join('*'), R.reject(R.isNil))(command.properties) + ' ' + command.command + ' ' + command.attributes;
+        var send = '1 ' + R.compose(R.join('*'), R.reject(R.isEmpty))(command.properties) + ' ' + command.command + ' ' + command.attributes;
 
         console.log(send);
 
