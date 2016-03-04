@@ -41,7 +41,7 @@ module.exports = function(io, client) {
         newSocket = null;
 
         if (callback) {
-          callback('success');
+          callback(returnData);
         }
       });
 

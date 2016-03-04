@@ -17,7 +17,7 @@ angular.module('commandsender.common')
 			var deferred = $q.defer();
 
 			socketService.emit(name, options, function(data){
-				//console.log(data);
+				console.log(data);
 				deferred.resolve(data);
 			});
 

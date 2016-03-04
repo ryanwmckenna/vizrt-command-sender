@@ -208,6 +208,18 @@ module.exports = function(grunt) {
               'Sortable.js',
               'ng-sortable.js'
             ]
+          },
+          'bootstrap': {
+            main: [
+              'dist/css/bootstrap.css',
+              'dist/js/bootstrap.js'
+            ]
+          },
+          'ngToast': {
+            main: [
+              'dist/ngToast.js',
+              'dist/ngToast.css'
+            ]
           }
         }
       },

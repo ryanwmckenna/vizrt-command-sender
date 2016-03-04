@@ -6,6 +6,7 @@ angular.module('commandsender', [
 	'btford.socket-io',
 	'ng-sortable',
 	'ngStorage',
+	'ngToast',
 	'ngFileSaver',
 	'commandsender.common',
 	'commandsender.commands'

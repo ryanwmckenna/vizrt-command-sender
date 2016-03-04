@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('commandsender.commands')
-  .controller('Commands', ['$scope', 'rendererService', 'uuidService', 'R', '$localStorage', 'FileSaver', 'Blob',
-    function($scope, rendererService, uuidService, R, $localStorage, FileSaver, Blob) {
+  .controller('Commands', ['$scope', 'rendererService', 'uuidService', 'R', '$localStorage', 'FileSaver', 'Blob', 'ngToast',
+    function($scope, rendererService, uuidService, R, $localStorage, FileSaver, Blob, ngToast) {
 
       var vm = {
         stack: [],
@@ -10,23 +10,29 @@ angular.module('commandsender.commands')
         newCommand: {
           commandId: uuidService.newUuid(),
           order: 0,
+          description: '',
           properties: ['', '', ''],
           command: '',
           attributes: ''
         },
         ip: '127.0.0.1',
-        response: '',
+        consoleLog: '',
         editingCommand: false
       };
 
       vm.sortableConfig = {
         group: 'commands',
         animation: 500,
-        onStart: function() {
-        },
+        onStart: function() {},
         onEnd: function(name) {
           vm.reIndex(name.models);
         }
+      };
+
+      var scrollToBuilder = function() {
+        $('html, body').animate({
+          scrollTop: $('#builder').offset().top
+        }, 1000);
       };
 
       var updateOrder = R.curry(function(positions, command) {
@@ -56,10 +62,14 @@ angular.module('commandsender.commands')
       vm.editCommand = function(command) {
         vm.newCommand = R.clone(command);
         vm.editingCommand = true;
+        scrollToBuilder();
       };
 
-      vm.copyCommand = function(command){
-        vm.newCommand = R.clone(command);
+      vm.copyCommand = function(command) {
+        vm.newCommand = R.merge(command, {
+          commandId: uuidService.newUuid()
+        });
+        scrollToBuilder();
       };
 
       vm.cancelEdit = function() {
@@ -68,7 +78,7 @@ angular.module('commandsender.commands')
       };
 
       vm.confirmEdit = function() {
-        vm.stack = R.compose(R.insert(R.__, vm.stack, vm.newCommand), R.findIndex(R.propEq('commandId', vm.newCommand.commandId)))(vm.stack);
+        vm.stack = R.compose(R.update(R.__, vm.newCommand, vm.stack), R.findIndex(R.propEq('commandId', vm.newCommand.commandId)))(vm.stack);
         vm.editingCommand = false;
         vm.resetCommand();
       };
@@ -87,6 +97,10 @@ angular.module('commandsender.commands')
         vm.stack = [];
       };
 
+      vm.clearConsole = function() {
+        vm.consoleLog = '';
+      };
+
       vm.saveToLocal = function() {
         $localStorage.commands = JSON.stringify(vm.stack);
         $localStorage.ip = vm.ip;
@@ -94,7 +108,7 @@ angular.module('commandsender.commands')
 
       vm.loadFromLocal = function() {
         vm.stack = $localStorage.commands ? JSON.parse($localStorage.commands) : [];
-        vm.ip = $localStorage.ip ? $localStorage.ip : '';
+        vm.ip = $localStorage.ip ? $localStorage.ip : '127.0.0.1';
       };
 
       vm.saveArchive = function() {
@@ -115,9 +129,9 @@ angular.module('commandsender.commands')
         var reader = new FileReader();
 
         reader.onloadend = function(e) {
-          if (e.target.readyState == FileReader.DONE) {
-              vm.stack = JSON.parse(e.target.result);
-              $scope.$apply();
+          if (e.target.readyState === FileReader.DONE) {
+            vm.stack = JSON.parse(e.target.result);
+            $scope.$apply();
           }
         };
 
@@ -125,20 +139,11 @@ angular.module('commandsender.commands')
       };
 
       vm.loadArchive = function() {
-        console.log($('#load-archive'));
         $('#load-archive').trigger('click').on('change', handleFileLoad);
       };
 
       vm.createSendCommand = function(command) {
-        var nonBlankProps = [];
-
-        for (var i = 0; i < command.properties.length; i += 1) {
-          if (command.properties[i] !== '') {
-            nonBlankProps.push(command.properties[i]);
-          }
-        }
-
-        var send = '1 ' + nonBlankProps.join('*') + ' ' + command.command + ' ' + command.attributes;
+        var send = '1 ' + R.compose(R.join('*'), R.reject(R.isNil))(command.properties) + ' ' + command.command + ' ' + command.attributes;
 
         console.log(send);
 
@@ -147,11 +152,19 @@ angular.module('commandsender.commands')
 
       vm.sendCommand = function(command) {
         if (vm.ip !== '') {
+
+          var sendCommand = vm.createSendCommand(command);
+
           rendererService.render({
             ip: vm.ip,
-            command: vm.createSendCommand(command)
+            command: sendCommand
           }).then(function(response) {
-            vm.response = response;
+            ngToast.create({
+              className: 'warning',
+              content: '<div class="send-toast"><div>Sent command to ' + vm.ip + '<br/>' + response + '</div>',
+              timeout: 6000
+            });
+            vm.consoleLog += command.description + '\n' + '-----------------------------------------------' + '\n' + sendCommand + '\n\n' + response + '\n' + '-----------------------------------------------' + '\n\n';
           });
         }
       };
