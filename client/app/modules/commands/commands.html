@@ -117,30 +117,7 @@
           </div>
           <hr/>
           <div id="sortable-container" class="stack-container" ng-sortable="vm.sortableConfig">
-            <div data-force="30" class="row stack-item" ng-repeat="command in vm.stack track by $index">
-              <div ng-show="command.description" class="stack-item-description">
-                <span>{{command.description}}</span>
-              </div>
-              <div class="col-xs-10">
-                <div class="stack-item-command">
-                  <div class="margin-bottom-12">
-                    <span ng-show="command.properties[0]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[0]}}</span>
-                    <span ng-show="command.properties[1]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[1]}}</span>
-                    <span ng-show="command.properties[2]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[2]}}</span>
-                    <span ng-show="command.command" class="stack-item-command-item stack-item-command-item-yellow">{{command.command}}</span>
-                  </div>
-                  <div>
-                    <pre ng-show="command.attributes" class="stack-item-command-item stack-item-command-item-white">{{command.attributes}}</pre>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-2 align-right stack-item-buttons">
-                <button class="btn btn-success btn-sm command-button" type="button" ng-click="vm.sendCommand(command)"><i class='fa fa-send'></i>&nbsp;&nbsp;Send</button>
-                <button class="btn btn-info btn-sm command-button" type="button" ng-click="vm.editCommand(command)"><i class='fa fa-cog'></i>&nbsp;&nbsp;Edit</button>
-                <button class="btn btn-warning btn-sm command-button" type="button" ng-click="vm.copyCommand(command)"><i class='fa fa-clone'></i>&nbsp;&nbsp;Copy</button>
-                <button class="btn btn-danger btn-sm command-button" type="button" ng-click="vm.deleteCommand(command)"><i class='fa fa-trash'></i>&nbsp;&nbsp;Delete</button>
-              </div>
-            </div>
+            <command-item command="command" send="vm.sendCommand(command)" copy="vm.copyCommand(command)" edit="vm.editCommand(command)" remove="vm.removeCommand(command)" ng-repeat="command in vm.stack track by $index"></command-item>
           </div>
         </div>
       </div>

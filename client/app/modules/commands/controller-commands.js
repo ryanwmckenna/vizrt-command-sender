@@ -89,7 +89,7 @@ angular.module('commandsender.commands')
         });
       };
 
-      vm.deleteCommand = function(command) {
+      vm.removeCommand = function(command) {
         vm.stack = R.compose(R.addIndex(R.map)(reindexStackItem), R.reject(R.propEq('commandId', command.commandId)))(vm.stack);
       };
 

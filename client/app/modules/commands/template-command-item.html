@@ -1,0 +1,27 @@
+<div data-force="30" class="stack-item">
+  <div ng-show="command.description" class="stack-item-description">
+    <span>{{command.description}}</span>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="stack-item-command">
+        <div class="margin-bottom-12">
+          <span ng-show="command.properties[0]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[0]}}</span>
+          <span ng-show="command.properties[1]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[1]}}</span>
+          <span ng-show="command.properties[2]" class="stack-item-command-item stack-item-command-item-blue">{{command.properties[2]}}</span>
+          <span ng-show="command.command" class="stack-item-command-item stack-item-command-item-yellow">{{command.command}}</span>
+          <span ng-show="command.attributes && !needsMultiline(command.attributes)" class="stack-item-command-item stack-item-command-item-white">{{command.attributes}}</span>
+        </div>
+        <div>
+          <pre ng-show="command.attributes && needsMultiline(command.attributes)" class="stack-item-command-item stack-item-command-item-white">{{command.attributes}}</pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4 align-right stack-item-buttons">
+      <button class="btn btn-danger btn-sm command-button" type="button" ng-click="remove()"><i class='fa fa-trash'></i>&nbsp;&nbsp;Remove</button>
+      <button class="btn btn-warning btn-sm command-button" type="button" ng-click="copy()"><i class='fa fa-clone'></i>&nbsp;&nbsp;Copy</button>
+      <button class="btn btn-info btn-sm command-button" type="button" ng-click="edit()"><i class='fa fa-cog'></i>&nbsp;&nbsp;Edit</button>
+      <button class="btn btn-success btn-sm command-button" type="button" ng-click="send()"><i class='fa fa-send'></i>&nbsp;&nbsp;Send</button>
+    </div>
+  </div>
+</div>
