@@ -66,7 +66,7 @@ angular.module('commandsender.commands')
       };
 
       vm.copyCommand = function(command) {
-        vm.newCommand = R.merge(command, {
+        vm.newCommand = R.merge(R.clone(command), {
           commandId: uuidService.newUuid()
         });
         scrollToBuilder();
