@@ -7,6 +7,7 @@ angular.module('commandsender.commands')
       var vm = {
         stack: [],
         archiveName: '',
+        documentationName: '',
         newCommand: {
           commandId: uuidService.newUuid(),
           order: 0,
@@ -121,6 +122,25 @@ angular.module('commandsender.commands')
         });
         FileSaver.saveAs(data, vm.archiveName + '.json');
         vm.archiveName = '';
+      };
+
+      var projectCommand = function(docs, command) {
+        var commandText = R.compose(R.join('*'), R.reject(R.isEmpty))(command.properties) + ' ' + command.command + ' ' + command.attributes;
+        var split = R.compose(R.join(''), R.repeat('-'))(80);
+
+        return docs + '\n\r' + command.description + '\n\r' + commandText + '\n\r' + split + '\n\r';
+      };
+
+      vm.saveDocumentation = function() {
+        if (vm.documentationName === '') {
+          return;
+        }
+
+        var data = new Blob([R.reduce(projectCommand, '')(vm.stack)], {
+          type: 'application/text;charset=utf-8'
+        });
+        FileSaver.saveAs(data, vm.documentationName + '.txt');
+        vm.documentationName = '';
       };
 
       var handleFileLoad = function(e) {

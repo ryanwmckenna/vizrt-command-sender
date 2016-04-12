@@ -20,20 +20,30 @@
   <div class="col-xs-8">
     <div class="well">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-4">
           <h4 class="title">Viz Engine IP</h4>
           <hr/>
           <input type="text" class="form-control" ng-model="vm.ip" />
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-4">
           <h4 class="title">Archive</h4>
           <hr/>
           <div>
             <form class="form-inline">
               <button type="button" class="btn btn-success btn-sm" ng-click="vm.loadArchive()"><i class='fa fa-folder-open-o'></i>&nbsp;&nbsp;Load</button>
               <input type="file" id="load-archive" name="files[]" style="display:none;" /> &nbsp;|&nbsp;
-              <button type="button" class="btn btn-success btn-sm" ng-click="vm.saveArchive()"><i class='fa fa-floppy-o'></i>&nbsp;&nbsp;Save</button>
               <input type="text" class="form-control" ng-model="vm.archiveName" placeholder="Archive name" />
+              <button type="button" class="btn btn-success btn-sm" ng-click="vm.saveArchive()"><i class='fa fa-floppy-o'></i>&nbsp;&nbsp;Save</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <h4 class="title">Documentation</h4>
+          <hr/>
+          <div>
+            <form class="form-inline">
+              <input type="text" class="form-control" ng-model="vm.documentationName" placeholder="Documentation name" />
+              <button type="button" class="btn btn-success btn-sm" ng-click="vm.saveDocumentation()"><i class='fa fa-floppy-o'></i>&nbsp;&nbsp;Save</button>
             </form>
           </div>
         </div>
