@@ -18,7 +18,8 @@ angular.module('commandsender.commands')
         },
         ip: '127.0.0.1',
         consoleLog: '',
-        editingCommand: false
+        editingCommand: false,
+        editCommandId: undefined
       };
 
       vm.sortableConfig = {
@@ -33,6 +34,16 @@ angular.module('commandsender.commands')
       var scrollToBuilder = function() {
         $('html, body').animate({
           scrollTop: $('#builder').offset().top
+        }, 1000);
+      };
+
+      var scrollToEditSite = function() {
+        if (!vm.editCommandId){
+          return;
+        }
+
+        $('html, body').animate({
+          scrollTop: $('#command-' + vm.editCommandId).offset().top
         }, 1000);
       };
 
@@ -63,6 +74,7 @@ angular.module('commandsender.commands')
       vm.editCommand = function(command) {
         vm.newCommand = R.clone(command);
         vm.editingCommand = true;
+        vm.editCommandId = command.commandId;
         scrollToBuilder();
       };
 
@@ -73,15 +85,18 @@ angular.module('commandsender.commands')
         scrollToBuilder();
       };
 
-      vm.cancelEdit = function() {
-        vm.editingCommand = false;
+      vm.resetEdit = function() {
+        scrollToEditSite();
+
         vm.resetCommand();
+        vm.editingCommand = false;
+        vm.editCommandId = undefined;
       };
 
       vm.confirmEdit = function() {
         vm.stack = R.compose(R.update(R.__, vm.newCommand, vm.stack), R.findIndex(R.propEq('commandId', vm.newCommand.commandId)))(vm.stack);
-        vm.editingCommand = false;
-        vm.resetCommand();
+
+        vm.resetEdit();
       };
 
       var reindexStackItem = function(item, index) {
