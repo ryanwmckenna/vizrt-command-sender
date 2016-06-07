@@ -7,10 +7,20 @@ Dropdowns populated by sending COMMAND_INFO to Viz Engine for each property and 
 Drag and drop stack items to re-order
 
 
+# Try it out
 
-# Instructions
+You will need NodeJS installed from https://nodejs.org/
 
-You will need nodeJS and bower installed
+Download the dist.zip file from http://www.andyleggett.co.uk/viz/dist.zip
+
+Unzip into a folder and then run node app from the command line in that folder. You'll see "App listening on 11000".
+
+Then point a browser at http://localhost:11000
+
+
+# Instructions for development
+
+You will need NodeJS and Bower installed
 
 Clone the repo
 cd [project folder]
